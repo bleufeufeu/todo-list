@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+}
+
+:root {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252526;
+  --text-bright: #f2f2f2;
+  --text-primary: #cccccc;
+  --text-secondary: #969696;
+  --accent: #be2a2a;
+  --accent-secondary: #a12424;
+  --accent-alt: #2aa1be;
+  --border: #3e3e42;
+}
+
+body {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 85px 1fr;
+  font-family: "DM Sans", sans-serif;
+}
+
+.sidebar {
+  display: flex;
+  padding: 15px 20px;
+  flex-direction: column;
+  gap: 20px;
+  grid-row: 1 / 3;
+  background-color: var(--accent);
+}
+
+.sidelogo,
+.fa-dragon {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--text-bright);
+}
+
+.sidemain {
+  margin-bottom: 20px;
+}
+
+.sidelogo,
+.sidebutton {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  gap: 15px;
+}
+
+.sidebutton:hover,
+img:hover {
+  background-color: var(--accent-secondary);
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-secondary);
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.searchbar {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1750px;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  max-width: 1750px;
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  border: 0;
+  padding: 10px 40px 10px 20px;
+  box-sizing: border-box;
+}
+
+input,
+button {
+  background-color: var(--bg-primary);
+  border-radius: 8px;
+  border: 0;
+  padding: 10px 20px;
+}
+
+button {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.cornerbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex: 0 1 auto;
+  margin-right: 20px;
+}
+
+.cornerbar i {
+  padding: 10px;
+  font-size: 1.5rem;
+  clip-path: circle();
+}
+
+.cornerbar i:hover {
+  cursor: pointer;
+  background-color: var(--bg-primary);
+}
+
+img {
+  margin-left: 10px;
+  width: 2.5rem;
+  clip-path: circle();
+}
+
+.main {
+  display: grid;
+  gap: 30px;
+  padding: 20px 20px;
+  grid-template: 1fr 1fr / 2fr 1fr;
+  background-color: var(--bg-primary);
+}
+
+.projects {
+  grid-row: 1 / 3;
+}
+
+.projectgrid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.sectionheader {
+  margin-bottom: 10px;
+}
+
+.sectionheader,
+.projecttitle {
+  text-decoration: none;
+  color: var(--text-bright);
+  font-size: 1.4rem;
+}
+
+.projectcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  height: 250px;
+  padding: 25px 40px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.projectdescription {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.cardicons {
+  cursor: pointer;
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.projectcard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--accent-alt);
+  width: 10px;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+}
+
+.announcementcard,
+.trendingcard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 25px 35px;
+}
+
+.announcementcard {
+  height: 500px;
+}
+
+.trendingcard {
+  justify-content: center;
+  gap: 25px;
+}
+
+.announcebody {
+  font-size: 0.8rem;
+}
+
+.divider {
+  border-bottom: 1px solid var(--border);
+  margin: 5px;
+}
+
+.trendingprofile {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.trendingprofile div {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1000px) {
+  .cornerbar i:not(:last-child) {
+    display: none;
+  }
+}
