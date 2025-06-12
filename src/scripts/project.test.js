@@ -1,12 +1,19 @@
-import Project from "./project.js";
+import projectManager from "./project.js";
 
 test("Creates a project", () => {
-    const newTodo = new Project("Test Project");
-    expect(newTodo.name).toBe("Test Project");
+  projectManager.addProject("New Project");
+  expect(projectManager.projectList).toHaveLength(3);
 });
 
 test("Can change name", () => {
-    const newTodo = new Project("Test Project");
-    newTodo.editName("New Name");
-    expect(newTodo.name).toBe("New Name");
+  projectManager.addProject("Second Project");
+  expect(projectManager.getProject("Second Project").title).toBe(
+    "Second Project",
+  );
+});
+
+test("Can get project title", () => {
+  expect(projectManager.getTitleFromId("pofewfqwefo")).toBe(
+    "My Second Project",
+  );
 });
