@@ -13,201 +13,85 @@
       rel="stylesheet"
       type="text/css"
     />
-    <title>Admin Dashboard</title>
-    <script defer src="main.js"></script>
-  </head>
+    <title>Todo List</title>
+  <script defer src="main.js"></script></head>
   <body>
     <div class="sidebar">
-      <div class="sidelogo"><i class="fa-solid fa-dragon"></i> Dashboard</div>
+      <div class="sidelogo">
+        <i class="fa-solid fa-clipboard-list"></i> Todo List
+      </div>
       <div class="sidemain">
-        <div class="sidebutton"><i class="fa-solid fa-house"></i> Home</div>
-        <div class="sidebutton"><i class="fa-solid fa-user"></i> Profile</div>
-        <div class="sidebutton">
-          <i class="fa-solid fa-message"></i> Messages
+        <div class="sidebutton" id="allButton">
+          <i class="fas fa-tasks"></i> All Tasks
         </div>
-        <div class="sidebutton"><i class="fas fa-history"></i> History</div>
-        <div class="sidebutton"><i class="fas fa-tasks"></i> Tasks</div>
-        <div class="sidebutton">
-          <i class="fa-solid fa-users"></i> Communities
+        <div class="sidebutton" id="todayButton">
+          <i class="fa-solid fa-calendar-days"></i> Today
+        </div>
+        <div class="sidebutton" id="overdueButton">
+          <i class="fa-solid fa-clock"></i> Overdue
+        </div>
+        <div class="sidebutton" id="completedButton">
+          <i class="fa-solid fa-circle-check"></i> Completed
         </div>
       </div>
       <div class="sideoptions">
-        <div class="sidebutton"><i class="fa-solid fa-gear"></i> Settings</div>
-        <div class="sidebutton">
-          <i class="fas fa-question-circle"></i> Support
-        </div>
-        <div class="sidebutton"><i class="fas fa-user-shield"></i> Privacy</div>
-      </div>
-    </div>
+        <div id="projectsHeader">Projects</div>
+        <div id="projectsList"></div>
 
-    <div class="header">
-      <div class="searchbar">
-        <input type="text" placeholder="Search" />
-        <button><i class="fas fa-search"></i></button>
-      </div>
-      <div class="cornerbar">
-        <i class="fa-solid fa-plus"></i>
-        <i class="fa-solid fa-cloud-arrow-up"></i>
-        <i class="fa-solid fa-share-nodes"></i>
-        <i class="fa-solid fa-bell"></i>
+        <div id="projFormContainer" class="hidden">
+          <form id="newProjectForm">
+            <input
+              type="text"
+              id="newProjTitle"
+              placeholder="Enter title here..."
+              required
+            />
+            <button type="submit"><i class="fa-solid fa-check"></i></button>
+            <i id="cancelProj" class="fa-solid fa-x"></i>
+          </form>
+        </div>
+        <div class="sidebutton" id="addProject">
+          <i class="fa-solid fa-circle-plus"></i> Add Project
+        </div>
       </div>
     </div>
 
     <div class="main">
-      <div class="projects">
-        <div class="sectionheader">My Projects</div>
-        <div class="projectgrid">
-          <div class="projectcard">
-            <a
-              class="projecttitle"
-              href="https://bleufeufeu.github.io/weather-app/"
-              >Weather App</a
-            >
-            <div class="projectdescription">
-              A real-time weather app that uses the Visual Crossing API.
-            </div>
-            <div class="cardicons">
-              <i class="fa-solid fa-star"></i> <i class="fas fa-edit"></i>
-              <i class="fa-solid fa-trash"></i>
-            </div>
+      <div id="projectTitle"></div>
+      <div id="newTodo"><i class="fa-solid fa-circle-plus"></i> Add Task</div>
+
+      <div id="todoFormContainer" class="hidden">
+        <form id="newTodoForm">
+          <div class="todoFormLeft">
+            <input name="taskName" type="text" id="newTodoTitle" placeholder="Task name (required)" required />
+            <input name="taskDate" type="date" id="newTodoDueDate" required />
+            <select name="taskPriority" required>
+              <option value="" selected disabled>Priority (required)</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+            <select name="taskProject" id="selectProject" required>
+              <option value="" selected disabled>Project (required)</option>
+            </select>
           </div>
 
-          <div class="projectcard">
-            <a
-              class="projecttitle"
-              href="https://bleufeufeu.github.io/battleship/"
-              >Battleship</a
-            >
-            <div class="projectdescription">
-              The timeless classic board game, now online.
-            </div>
-            <div class="cardicons">
-              <i class="fa-solid fa-star"></i> <i class="fas fa-edit"></i>
-              <i class="fa-solid fa-trash"></i>
+          <div class="todoFormRight">
+            <input
+              name="taskDescription"
+              type="text"
+              id="newTodoDescription"
+              placeholder="Describe the task (optional)"
+            />
+            <div class="todoFormButtons">
+              <button id="cancelTodo">Cancel</button>
+              <button id="addTodo" type="submit">Add</button>
             </div>
           </div>
-
-          <div class="projectcard">
-            <a
-              class="projecttitle"
-              href="https://bleufeufeu.github.io/sign-up-form/"
-              >Sign Up Form</a
-            >
-            <div class="projectdescription">
-              Sign up form the next big thing.
-            </div>
-            <div class="cardicons">
-              <i class="fa-solid fa-star"></i> <i class="fas fa-edit"></i>
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-
-          <div class="projectcard">
-            <a
-              class="projecttitle"
-              href="https://bleufeufeu.github.io/calculator/"
-              >Calculator</a
-            >
-            <div class="projectdescription">
-              A calculator app with a familiar layout and keyboard support.
-            </div>
-            <div class="cardicons">
-              <i class="fa-solid fa-star"></i> <i class="fas fa-edit"></i>
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-
-          <div class="projectcard">
-            <a class="projecttitle" href="https://bleufeufeu.github.io/library/"
-              >Library</a
-            >
-            <div class="projectdescription">
-              A library for readers to save their favourite books.
-            </div>
-            <div class="cardicons">
-              <i class="fa-solid fa-star"></i> <i class="fas fa-edit"></i>
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-
-          <div class="projectcard">
-            <a
-              class="projecttitle"
-              href="https://bleufeufeu.github.io/etch-a-sketch/"
-              >Etch-A-Sketch</a
-            >
-            <div class="projectdescription">
-              Let your artistic side free with this classic toy.
-            </div>
-            <div class="cardicons">
-              <i class="fa-solid fa-star"></i> <i class="fas fa-edit"></i>
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
 
-      <div class="announcements">
-        <div class="sectionheader">Announcements</div>
-
-        <div class="announcementcard">
-          <div class="announcetitle">Site Maintenance</div>
-          <div class="announcebody">
-            Praesent eget lectus congue, porta metus vitae, malesuada mauris.
-            Pellentesque...
-          </div>
-          <span class="divider"></span>
-          <div class="announcetitle">Community Share Day</div>
-          <div class="announcebody">
-            Suspendisse non nisi vitae metus posuere condimentum at vel nisl...
-          </div>
-          <span class="divider"></span>
-          <div class="announcetitle">We're Hiring!</div>
-          <div class="announcebody">
-            In congue massa at lacus bibendum accumsan. Interdum et
-            malesuada....
-          </div>
-          <span class="divider"></span>
-          <div class="announcetitle">Privacy Policy Update</div>
-          <div class="announcebody">
-            Quisque nulla purus, aliquam id varius a, vehicula at erat...
-          </div>
-        </div>
-      </div>
-
-      <div class="trending">
-        <div class="sectionheader">Trending</div>
-
-        <div class="trendingcard">
-          <div class="trendingprofile">
-            <div class="trendingbody">
-              <div>@manny</div>
-              <div>Admin Dashboard</div>
-            </div>
-          </div>
-
-          <div class="trendingprofile">
-            <div class="trendingbody">
-              <div>@wallacengromit</div>
-              <div>Norbot</div>
-            </div>
-          </div>
-
-          <div class="trendingprofile">
-            <div class="trendingbody">
-              <div>@rick</div>
-              <div>Never Letting You Down</div>
-            </div>
-          </div>
-
-          <div class="trendingprofile">
-            <div class="trendingbody">
-              <div>@pingu</div>
-              <div>noot</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="todosDisplay"></div>
     </div>
   </body>
 </html>
