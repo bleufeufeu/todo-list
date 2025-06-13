@@ -1,5 +1,6 @@
 import todoManager from "./todo";
 import projectManager from "./project";
+import storageManager from "./storageManager";
 import { format, isAfter, isBefore, startOfDay, isToday } from "date-fns";
 
 const domManager = (() => {
@@ -34,8 +35,9 @@ const domManager = (() => {
     todoCheck.innerHTML = "<input type='checkbox'>";
     todoCheck.addEventListener("click", () => {
       todo.toggleCompletion();
+      storageManager.saveTodosToStorage();
       if (!projectSpecific) {
-        todoDiv.remove();
+        wrapper.remove();
       } else {
         if (todo.completed) {
           todoDiv.classList.add("checkedComplete");
@@ -60,7 +62,7 @@ const domManager = (() => {
     deleteIcon.classList.add("fa-solid", "fa-trash");
     deleteIcon.addEventListener("click", () => {
       todoManager.deleteTodo(todo);
-      localStorage.setItem('todos', JSON.stringify(todoManager.todosList));
+      storageManager.saveTodosToStorage();
       wrapper.remove();
     });
     todoIcons.appendChild(editIcon);
@@ -173,7 +175,7 @@ const domManager = (() => {
       todo.editTask(name, description, dueDate, priority, projectId);
     
 
-      localStorage.setItem('todos', JSON.stringify(todoManager.todosList));
+      storageManager.saveTodosToStorage();
       editForm.classList.add("hidden");
       refreshCurrentDisplay();
     });
@@ -231,7 +233,8 @@ const domManager = (() => {
 
   const displayProjectTodos = (projectId) => {
     todosDisplay.innerHTML = "";
-    projectTitle.textContent = projectManager.getTitleFromId(projectId);
+    let idToTitle = projectManager.getTitleFromId(projectId);
+    projectTitle.textContent = idToTitle;
     const filteredProject = todoManager.filterProject(projectId);
     for (let i = 0; i < filteredProject.length; i++) {
       displayTodo(filteredProject[i], true);
@@ -268,7 +271,6 @@ const domManager = (() => {
 
   const refreshCurrentDisplay = () => {
     let current = getCurrentDisplay();
-    console.log(current);
     if (current == "All Tasks") {
       displayAllTodos();
     } else if (current == "Today's Tasks") {
@@ -324,7 +326,7 @@ const domManager = (() => {
       projectForm.reset();
       projectManager.addProject(title);
       projFormContainer.classList.add("hidden");
-      localStorage.setItem('projects', JSON.stringify(projectManager.projectList));
+      storageManager.saveProjectsToStorage();
       displayProjectsList();
       displaySelectProject();
     });
@@ -348,10 +350,10 @@ const domManager = (() => {
       const projectId = projectManager.getIdFromTitle(projectName);
       const description = todoData.get("taskDescription");
       todoForm.reset();
-      todoManager.addTodo(name, description, dueDate, priority, projectId);
+      todoManager.addTodo(name, description, dueDate, priority, false, projectId);
       todoFormContainer.classList.add("hidden");
 
-      localStorage.setItem('todos', JSON.stringify(todoManager.todosList));
+      storageManager.saveTodosToStorage();
 
       refreshCurrentDisplay();
     });

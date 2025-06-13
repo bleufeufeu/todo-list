@@ -1,21 +1,10 @@
 const projectManager = (() => {
   let projectList = [];
 
-  projectList = [
-    {
-      title: "Hello World",
-      id: "k7x2m9p1q",
-    },
-    {
-      title: "My Second Project",
-      id: "pofewfqwefo",
-    },
-  ];
-
   class Project {
-    constructor(title) {
+    constructor(title, id=Math.random().toString(36).slice(2, 9)) {
       this.title = title;
-      this.id = Math.random().toString(36).slice(2, 9);
+      this.id = id;
     }
 
     get projectTitle() {

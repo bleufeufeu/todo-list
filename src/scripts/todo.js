@@ -1,11 +1,11 @@
 const todoManager = (() => {
   class Todo {
-    constructor(name, description = "", dueDate, priority, projectId) {
+    constructor(name, description = "", dueDate, priority, completed=false, projectId) {
       this.name = name;
       this.description = description;
       this.dueDate = dueDate;
       this.priority = priority;
-      this.completed = false;
+      this.completed = completed;
       this.projectId = projectId;
     }
 
@@ -23,19 +23,12 @@ const todoManager = (() => {
   }
 
   let todosList = [
-    new Todo(
-      "Test Todo",
-      "Hello World",
-      "2025-01-01",
-      "Urgent",
-      "k7x2m9p1q",
-    ),
-    new Todo("Finish the website", "", "2025-06-12", "Low", "pofewfqwefo"),
+  
   ];
 
-  function addTodo(name, description, dueDate, priority, projectId) {
+  function addTodo(name, description, dueDate, priority, completed, projectId) {
     this.todosList.push(
-      new Todo(name, description, dueDate, priority, projectId),
+      new Todo(name, description, dueDate, priority, completed, projectId),
     );
   }
 
@@ -57,8 +50,12 @@ const todoManager = (() => {
     return todosList.filter((todo) => todo.completed === true);
   }
 
-  function filterIncompleted() {
-    return todosList.filter((todo) => todo.completed === false);
+  function filterIncompleted() { 
+    const result = todosList.filter((todo) => {
+      return todo.completed === false;
+    });
+
+    return result;
   }
 
   return {
